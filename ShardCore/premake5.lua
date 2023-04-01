@@ -9,13 +9,13 @@ project "ShardCore"
 
     files
     {
-        "%{wks.location}/%{prj.name}/Source/**.h",
-        "%{wks.location}/%{prj.name}/Source/**.cpp"
+        "%{prj.location}/Source/**.h",
+        "%{prj.location}/Source/**.cpp"
     }
 
     includedirs
     {
-        "%{wks.location}/%{prj.name}/Source"
+        "%{prj.location}/Source"
     }
 
     filter "system:windows"
