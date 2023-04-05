@@ -13,31 +13,31 @@ namespace Shard
         Delegate() = default;
         
         Delegate(const std::function<TReturn(TArgs...)>& func)
-            : m_function(func)
+            : m_Function(func)
         {}
         
         template<typename TSubscriber>
         void Bind(TSubscriber* obj, TReturn(TSubscriber::*funcPtr)(TArgs...))
         {
-            m_function = std::bind(funcPtr, obj);
+            m_Function = std::bind(funcPtr, obj);
         }
         
         template<typename ...Args>
         TReturn operator()(Args&&... args)
         {
-            if (!m_function)
+            if (!m_Function)
                 return TReturn();
-            return m_function(std::forward<Args>(args)...);
+            return m_Function(std::forward<Args>(args)...);
         }
         
         bool operator==(const Delegate& other) const
         {
-            return m_function == other.m_function;
+            return m_Function == other.m_Function;
         }
         
-        void Clear() { m_function = nullptr; }
+        void Clear() { m_Function = nullptr; }
     
     private:
-        std::function<TReturn(TArgs...)> m_function;
+        std::function<TReturn(TArgs...)> m_Function;
     };
 }

@@ -7,28 +7,28 @@ namespace Shard
     class Singleton
     {
     public:
-        static bool HasInstance() { return m_instance; }
+        static bool HasInstance() { return m_Instance; }
         
         static T& GetInstance()
         {
             assert(HasInstance() && "There is no instance to retrieve!");
-            return *m_instance;
+            return *m_Instance;
         }
         
         static T& CreateSingleton()
         {
-            assert(!m_instance && "Instance already exists!");
-            m_instance = new T();
+            assert(!m_Instance && "Instance already exists!");
+            m_Instance = new T();
             return GetInstance();
         }
 
         static void DestroySingleton()
         {
-            assert(m_instance && "There is no instance to destroy!");
-            delete m_instance;
+            assert(m_Instance && "There is no instance to destroy!");
+            delete m_Instance;
         }
         
     private:
-        inline static T* m_instance = nullptr;
+        inline static T* m_Instance = nullptr;
     };
 }
